@@ -17,7 +17,7 @@
 | email        |登录邮箱     | String     | 是       | 无   |
 
 请求实例：
-   GET
+   POST
    [/admin/login]()
    HTTP/1.1 Host: [http://web.server.com:8080/admin/login]
 
