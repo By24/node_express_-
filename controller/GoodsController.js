@@ -20,7 +20,7 @@ class Goods extends AddressComponent {
 				})
 				return
 			}
-			const { member_id, limit = 0, offset = 0 } = fields;
+			const { member_id, limit = 10, offset = 0 } = fields;
 			// limit 每次限制多少条
 			// offset 从第几条开始显示limit条
 			try {
@@ -40,7 +40,7 @@ class Goods extends AddressComponent {
 				return
 			}
 			try {
-				const goods = await GoodsModel.find({}, '-_id').sort({ id: 1 }).limit(Number(limit)).skip(Number(offset));
+				const goods = await GoodsModel.find({}, '-_id').sort({ id: 1 }).limit(Number(limit)).skip(Number(offset)).populate('goods_category');
 				res.send({
 					code: 1,
 					data: goods,
@@ -104,6 +104,7 @@ class Goods extends AddressComponent {
 				console.log('获取数据数据失败', err);
 				res.send({
 					code: 0,
+					err:err,
 					message: '添加商品失败',
 				})
 				return

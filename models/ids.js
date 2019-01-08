@@ -4,7 +4,8 @@ import mongoose from 'mongoose'
 
 const idsSchema = new mongoose.Schema({
 	goods_id: Number,
-	category_id: Number
+	category_id: Number,
+	freight_id: Number
 });
 
 const Ids = mongoose.model('Ids', idsSchema);
