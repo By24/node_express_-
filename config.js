@@ -2,7 +2,7 @@
 
 module.exports = {
 	port: 8005,
-	url: 'mongodb://localhost:27017/elm1',
+	url: 'mongodb://localhost:27017/mall',
 	session: {
 		name: 'SID',
 		secret: 'SID',
@@ -13,3 +13,4 @@ module.exports = {
 		}
 	}
 }
+// mongodb://user:password@sample.com:port/dbname

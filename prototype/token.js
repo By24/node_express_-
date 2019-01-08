@@ -2,13 +2,11 @@ var crypto = require("crypto");
 var config = require('../config')
 var token = {
     createToken: function (obj, timeout) {
-        console.log(parseInt(timeout) || config.session.cookie.maxAge);
         var obj2 = {
             data: obj,//payload
             created: parseInt(Date.now() / 1000),//token生成的时间的，单位秒
             exp: parseInt(timeout) || config.session.cookie.maxAge//token有效期
         };
-
         //payload信息
         var base64Str = Buffer.from(JSON.stringify(obj2), "utf8").toString("base64");
 

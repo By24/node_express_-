@@ -36,16 +36,13 @@ class Check {
 
 		if(!newCheckToken || !newToken){
 			res.send({
-				status: 101,
-				type: 'ERROR_SESSION',
-				message: '验证失败',
-				newCheckToken,
-				newToken
+				status: 5000,
+				message: '无效令牌',
 			})
 			return
 		}
 		const admin_id = newToken.payload.data.admin_id;
-		// const session = await SessionModel.findOne({_id: admin_id});
+
 		if (!admin_id || !Number(admin_id)) {
 			res.send({
 				status: 101,
@@ -56,7 +53,7 @@ class Check {
 			return
 		}else{
 			const admin = await AdminModel.findOne({id: admin_id});
-			if (!admin || admin.status != 2) {
+			if (!admin || admin.status != 1) {
 				res.send({
 					status: 0,
 					type: 'HAS_NO_ACCESS',
