@@ -2,12 +2,39 @@
 
 import AdminModel from '../models/admin/admin'
 import Token from '../prototype/token'
+import MemberModel from '../models/member/member'
 // import SessionModel from '../models/Session'
 class Check {
-	constructor(){
-		
+	constructor() {
+
 	}
-	async checkAdmin(req, res, next){
+	async checkAdmin(req, res, next) {
+		const tokens = req.headers.token
+		const checkToken = await Token.checkToken(tokens);
+
+		if (checkToken) {
+			let member_info = Token.decodeToken(tokens);
+			const member_id = await MemberModel.findOne({ member_id: member_info.payload.data.member_id });
+			console.log(checkToken, member_info.payload.data.member_id)
+
+
+
+
+
+
+
+		} else {
+			res.send({
+				code: 0,
+				message: '无效令牌',
+			})
+			return
+		}
+
+
+
+		next()
+		return
 		const admin_id = req.session.admin_id;
 		if (!admin_id || !Number(admin_id)) {
 			res.send({
@@ -16,8 +43,8 @@ class Check {
 				message: '亲，您还没有登录',
 			})
 			return
-		}else{
-			const admin = await AdminModel.findOne({id: admin_id});
+		} else {
+			const admin = await AdminModel.findOne({ id: admin_id });
 			if (!admin) {
 				res.send({
 					status: 0,
@@ -29,12 +56,12 @@ class Check {
 		}
 		next()
 	}
-	async checkSuperAdmin(req, res, next){
+	async checkSuperAdmin(req, res, next) {
 		const tokens = req.headers.token
 		const newToken = await Token.decodeToken(tokens);
 		const newCheckToken = await Token.checkToken(tokens);
 
-		if(!newCheckToken || !newToken){
+		if (!newCheckToken || !newToken) {
 			res.send({
 				status: 5000,
 				message: '无效令牌',
@@ -47,12 +74,12 @@ class Check {
 			res.send({
 				status: 101,
 				type: 'ERROR_SESSION',
-				data:newToken,
+				data: newToken,
 				message: '亲，您还没有登录',
 			})
 			return
-		}else{
-			const admin = await AdminModel.findOne({id: admin_id});
+		} else {
+			const admin = await AdminModel.findOne({ id: admin_id });
 			if (!admin || admin.status != 1) {
 				res.send({
 					status: 0,

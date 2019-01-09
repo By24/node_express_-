@@ -40,6 +40,7 @@ class Goods extends AddressComponent {
 				return
 			}
 			try {
+				// const goods = await GoodsModel.find({}, '-_id').sort({ id: 1 }).limit(Number(limit)).skip(Number(offset)).populate('goods_category');
 				const goods = await GoodsModel.find({}, '-_id').sort({ id: 1 }).limit(Number(limit)).skip(Number(offset)).populate('goods_category');
 				res.send({
 					code: 1,

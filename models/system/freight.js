@@ -11,7 +11,7 @@ const freightSchema = new Schema({
 
 freightSchema.index({ id: 1 });
 
-const Freight = mongoose.model('Freight', freightSchema);
+const Freight = mongoose.model('ff__Freight', freightSchema);
 
 
 export default Freight

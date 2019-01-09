@@ -14,7 +14,7 @@ const categorySchema = new Schema({
 
 categorySchema.index({ id: 1 });
 
-const  CategoryModel = mongoose.model('Category', categorySchema);
+const  CategoryModel = mongoose.model('ff__Category', categorySchema);
 
 
 export default CategoryModel

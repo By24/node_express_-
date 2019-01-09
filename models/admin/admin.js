@@ -18,7 +18,7 @@ const adminSchema = new Schema({
 
 adminSchema.index({ id: 1 });
 
-const Admin = mongoose.model('Admin', adminSchema);
+const Admin = mongoose.model('ff__Admin', adminSchema);
 
 
 export default Admin

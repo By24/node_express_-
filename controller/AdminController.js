@@ -42,7 +42,7 @@ class Admin extends AddressComponent {
 			try {
 				const admin = await AdminModel.findOne({ email, password: newpassword })
 				if (admin) {
-					const newToken = await Token.createToken({admin_id:admin.id})
+					const newToken = await Token.createToken({ admin_id: admin.id })
 					res.send({
 						code: 1,
 						data: {
@@ -50,7 +50,7 @@ class Admin extends AddressComponent {
 							email: admin.email,
 							status: admin.status,
 							admin: admin.admin,
-							token:newToken,
+							token: newToken,
 						},
 						msg: '登陆成功',
 					})

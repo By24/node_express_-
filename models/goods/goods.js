@@ -40,7 +40,7 @@ const goodsSchema = new Schema({
 
 goodsSchema.index({ id: 1 });
 
-const  GoodsModel = mongoose.model('Goods', goodsSchema);
+const  GoodsModel = mongoose.model('ff__Goods', goodsSchema);
 
 
 export default GoodsModel
